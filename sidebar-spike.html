@@ -8,6 +8,8 @@
     margin: 0;
     padding: 0;
     background-color: #e6e6e6;
+    font-size: 22px;
+    text-align: center;
   }
 
   #topbar-1 {
@@ -21,6 +23,43 @@
     height: 40px;
     background-color: lime;
   }
+
+  #page-content {
+    background-color: #CCFFFF;
+  }
+
+  #page-content #tickets-and-sidebar div.clear {
+    clear: both;
+  }
+
+  #page-content #tickets {
+    width: 60%;
+    height: 1200px;
+    float: left;
+    background-color: #FFCC99;
+  }
+
+  #page-content #sidebar {
+    width: 40%;
+    height: 600px;
+    float: left;
+    background-color: #0099FF;
+  }
+
+  #page-content #arvat {
+    height: 300px;
+    background-color: #999966;
+  }
+
+  #page-content #instructions {
+    height: 300px;
+    background-color: #993300;
+  }
+
+  #footer {
+    height: 300px;
+    /*background-color: #993300;*/
+  }
 </style>
 
 </head>
@@ -32,6 +71,28 @@
 
 <div id="topbar-2">
   top bar 2
+</div>
+
+<div id="page-content">
+  <div id="tickets-and-sidebar">
+    <div id="tickets">
+      tickets
+    </div>
+    <div id="sidebar">
+      sidebar
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div id="arvat">
+    arvat
+  </div>
+  <div id="instructions">
+    instructions
+  </div>
+</div>
+
+<div id="footer">
+  footer
 </div>
 
 </body>
