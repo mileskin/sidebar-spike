@@ -18,9 +18,9 @@ function toCurrentElementPositions() {
   var windowBottom = windowTop + windowHeight
   var topbar = $('#topbar-2').position().top + $('#topbar-2').height()
   var pageContentTop = $('#page-content').position().top
-  var arvat = $('#arvat').position().top
+  var bottomContentTop = $('#bottom-content').position().top
   var topVisible = windowTop < topbar
-  var bottomVisible = windowBottom > arvat + topbar
+  var bottomVisible = windowBottom > bottomContentTop + topbar
 
   return {
     sidebarMinHeight: sidebarMinHeight,
@@ -29,7 +29,7 @@ function toCurrentElementPositions() {
     windowBottom: windowBottom,
     topbar: topbar,
     pageContentTop: pageContentTop,
-    arvat: arvat,
+    bottomContentTop: bottomContentTop,
     topVisible: topVisible,
     bottomVisible: bottomVisible
   }
@@ -54,11 +54,11 @@ function applySidebarPosition(x) {
       .css('max-height', '1000px')
   } else if (x.bottomVisible) {
     console.log('bottom visible')
-    var availableSideBarHeight = x.arvat - x.windowTop + x.pageContentTop - sidebarPadding - sidebarPadding
+    var availableSideBarHeight = x.bottomContentTop - x.windowTop + x.pageContentTop - sidebarPadding - sidebarPadding
     var sidebarTopWhenEnoughRoom = x.windowTop - x.pageContentTop + sidebarPadding
     var sidebarTop = (function() {
       if (availableSideBarHeight < x.sidebarMinHeight) {
-        return x.arvat - x.sidebarMinHeight - sidebarPadding - sidebarPadding
+        return x.bottomContentTop - x.sidebarMinHeight - sidebarPadding - sidebarPadding
       } else {
         return sidebarTopWhenEnoughRoom
       }
