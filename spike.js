@@ -13,6 +13,8 @@ function isInCurrentView($e) {
 }
 
 var $win = $(window)
+var sidebarMinHeight = 500
+var sidebarPadding = 10
 
 Bacon.mergeAll([
   $win.asEventStream('load'),
@@ -21,7 +23,6 @@ Bacon.mergeAll([
 ])
   .debounce(100)
   .map(function() {
-    var sidebarMinHeight = 500
     var windowHeight = $win.height()
     var windowTop = $win.scrollTop()
     var windowBottom = windowTop + windowHeight
@@ -47,24 +48,24 @@ Bacon.mergeAll([
     if (x.windowHeight < x.sidebarMinHeight + x.topbar) {
       $('#sidebar')
         .css('position', 'absolute')
-        .css('top', 10)
-        .css('bottom', 10)
+        .css('top', sidebarPadding)
+        .css('bottom', sidebarPadding)
         .css('min-height', '500px')
         .css('max-height', '500px')
     } else if (x.topVisible) {
       console.log('top visible!')
       $('#sidebar')
         .css('position', 'fixed')
-        .css('top', x.topbar - x.windowTop + 10)
-        .css('bottom', 10)
+        .css('top', x.topbar - x.windowTop + sidebarPadding)
+        .css('bottom', sidebarPadding)
         .css('min-height', '500px')
         .css('max-height', '1000px')
     } else if (x.bottomVisible) {
-      var availableSideBarHeight = x.arvat - x.windowTop + x.pageContentTop - 10 - 10
-      var sidebarTopWhenEnoughRoom = x.windowTop - x.pageContentTop + 10
+      var availableSideBarHeight = x.arvat - x.windowTop + x.pageContentTop - sidebarPadding - sidebarPadding
+      var sidebarTopWhenEnoughRoom = x.windowTop - x.pageContentTop + sidebarPadding
       var sidebarTop = (function() {
         if (availableSideBarHeight < x.sidebarMinHeight) {
-          return x.arvat - x.sidebarMinHeight - 10 - 10
+          return x.arvat - x.sidebarMinHeight - sidebarPadding - sidebarPadding
         } else {
           return sidebarTopWhenEnoughRoom
         }
@@ -72,15 +73,15 @@ Bacon.mergeAll([
       $('#sidebar')
         .css('position', 'absolute')
         .css('top', sidebarTop)
-        .css('bottom', $('#page-content').height() - $('#tickets').height() + 10)
+        .css('bottom', $('#page-content').height() - $('#tickets').height() + sidebarPadding)
         .css('min-height', '500px')
         .css('max-height', '1000px')
     } else {
       console.log('no top or bottom')
       $('#sidebar')
         .css('position', 'fixed')
-        .css('top', 10)
-        .css('bottom', 10)
+        .css('top', sidebarPadding)
+        .css('bottom', sidebarPadding)
         .css('min-height', '500px')
         .css('max-height', '1000px')
     }
