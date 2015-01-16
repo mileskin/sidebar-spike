@@ -1,17 +1,3 @@
-function isInCurrentView($e) {
-  var windowTopOffset = $(window).scrollTop()
-  var windowHeight = $(window).height()
-  var windowBottomOffset = windowTopOffset + windowHeight
-  var elementPosition = $e.position().top
-  console.table([{
-    windowTopOffset: windowTopOffset,
-    windowHeight: windowHeight,
-    windowBottomOffset: windowBottomOffset,
-    elementPosition: elementPosition
-  }])
-  return ((windowTopOffset <= elementPosition) <= windowBottomOffset)
-}
-
 var $win = $(window)
 var sidebarMinHeight = 500
 var sidebarPadding = 10
