@@ -69,7 +69,7 @@ function applySidebarPosition(x) {
       .css('bottom', $('#page-content').height() - $('#main-content').height() + sidebarPadding)
       .css('max-height', '1000px')
   } else {
-    console.log('no top or bottom')
+    console.log('main content only')
     $('#sidebar')
       .css('position', 'fixed')
       .css('top', sidebarPadding)
