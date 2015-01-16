@@ -25,11 +25,11 @@ body {
   background-color: #CCFFFF;
 }
 
-#page-content #tickets-and-sidebar div.clear {
+#page-content #main-content-and-sidebar div.clear {
   clear: both;
 }
 
-#page-content #tickets {
+#page-content #main-content {
   width: 55%;
   height: 1200px;
   float: left;

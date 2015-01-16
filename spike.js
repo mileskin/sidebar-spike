@@ -66,7 +66,7 @@ function applySidebarPosition(x) {
     $('#sidebar')
       .css('position', 'absolute')
       .css('top', sidebarTop)
-      .css('bottom', $('#page-content').height() - $('#tickets').height() + sidebarPadding)
+      .css('bottom', $('#page-content').height() - $('#main-content').height() + sidebarPadding)
       .css('max-height', '1000px')
   } else {
     console.log('no top or bottom')
