@@ -50,15 +50,13 @@ Bacon.mergeAll([
         .css('position', 'absolute')
         .css('top', sidebarPadding)
         .css('bottom', sidebarPadding)
-        .css('min-height', '500px')
-        .css('max-height', '500px')
+        .css('max-height', sidebarMinHeight + 'px')
     } else if (x.topVisible) {
       console.log('top visible!')
       $('#sidebar')
         .css('position', 'fixed')
         .css('top', x.topbar - x.windowTop + sidebarPadding)
         .css('bottom', sidebarPadding)
-        .css('min-height', '500px')
         .css('max-height', '1000px')
     } else if (x.bottomVisible) {
       var availableSideBarHeight = x.arvat - x.windowTop + x.pageContentTop - sidebarPadding - sidebarPadding
@@ -74,7 +72,6 @@ Bacon.mergeAll([
         .css('position', 'absolute')
         .css('top', sidebarTop)
         .css('bottom', $('#page-content').height() - $('#tickets').height() + sidebarPadding)
-        .css('min-height', '500px')
         .css('max-height', '1000px')
     } else {
       console.log('no top or bottom')
@@ -82,7 +79,6 @@ Bacon.mergeAll([
         .css('position', 'fixed')
         .css('top', sidebarPadding)
         .css('bottom', sidebarPadding)
-        .css('min-height', '500px')
         .css('max-height', '1000px')
     }
   })
