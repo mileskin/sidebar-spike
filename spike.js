@@ -12,7 +12,7 @@ function isInCurrentView($e) {
   return ((windowTopOffset <= elementPosition) <= windowBottomOffset)
 }
 
-$win = $(window)
+var $win = $(window)
 
 Bacon.mergeAll([
   $win.asEventStream('load'),
@@ -21,16 +21,17 @@ Bacon.mergeAll([
 ])
   .debounce(100)
   .map(function() {
-    $win = $(window)
-    windowHeight = $win.height()
-    windowTop = $win.scrollTop()
-    windowBottom = windowTop + windowHeight
-    topbar = $('#topbar-2').position().top + $('#topbar-2').height()
-    pageContentTop = $('#page-content').position().top
-    arvat = $('#arvat').position().top
-    topVisible = windowTop < topbar
-    bottomVisible = windowBottom > arvat + topbar
+    var sidebarMinHeight = 500
+    var windowHeight = $win.height()
+    var windowTop = $win.scrollTop()
+    var windowBottom = windowTop + windowHeight
+    var topbar = $('#topbar-2').position().top + $('#topbar-2').height()
+    var pageContentTop = $('#page-content').position().top
+    var arvat = $('#arvat').position().top
+    var topVisible = windowTop < topbar
+    var bottomVisible = windowBottom > arvat + topbar
     return {
+      sidebarMinHeight: sidebarMinHeight,
       windowHeight: windowHeight,
       windowTop: windowTop,
       windowBottom: windowBottom,
@@ -43,7 +44,7 @@ Bacon.mergeAll([
   })
   .onValue(function(x) {
     console.table([x])
-    if (x.windowHeight < 600) {
+    if (x.windowHeight < x.sidebarMinHeight + x.topbar) {
       $('#sidebar')
         .css('position', 'absolute')
         .css('top', 10)
@@ -59,13 +60,19 @@ Bacon.mergeAll([
         .css('min-height', '500px')
         .css('max-height', '1000px')
     } else if (x.bottomVisible) {
-      console.log('bottom visible')
+      var availableSideBarHeight = x.arvat - x.windowTop + x.pageContentTop - 10 - 10
+      var sidebarTopWhenEnoughRoom = x.windowTop - x.pageContentTop + 10
+      var sidebarTop = (function() {
+        if (availableSideBarHeight < x.sidebarMinHeight) {
+          return x.arvat - x.sidebarMinHeight - 10 - 10
+        } else {
+          return sidebarTopWhenEnoughRoom
+        }
+      })()
       $('#sidebar')
         .css('position', 'absolute')
-        // .css('top', '686px')
-        .css('top', x.windowTop - x.pageContentTop + 10)
+        .css('top', sidebarTop)
         .css('bottom', $('#page-content').height() - $('#tickets').height() + 10)
-        // .css('bottom', '610px')
         .css('min-height', '500px')
         .css('max-height', '1000px')
     } else {
