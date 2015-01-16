@@ -39,19 +39,21 @@ function toCurrentElementPositions() {
 function applySidebarPosition(x) {
   console.table([x])
   if (x.windowHeight < x.sidebarMinHeight + x.topbar) {
+    console.log('small window')
     $('#sidebar')
       .css('position', 'absolute')
       .css('top', sidebarPadding)
       .css('bottom', sidebarPadding)
       .css('max-height', sidebarMinHeight + 'px')
   } else if (x.topVisible) {
-    console.log('top visible!')
+    console.log('top visible')
     $('#sidebar')
       .css('position', 'fixed')
       .css('top', x.topbar - x.windowTop + sidebarPadding)
       .css('bottom', sidebarPadding)
       .css('max-height', '1000px')
   } else if (x.bottomVisible) {
+    console.log('bottom visible')
     var availableSideBarHeight = x.arvat - x.windowTop + x.pageContentTop - sidebarPadding - sidebarPadding
     var sidebarTopWhenEnoughRoom = x.windowTop - x.pageContentTop + sidebarPadding
     var sidebarTop = (function() {
