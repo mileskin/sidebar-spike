@@ -3,18 +3,6 @@ var sidebarMinHeight = 500
 var sidebarPadding = 10
 var collapsedBoxHeight = 60
 
-$('#sidebar')
-  .asEventStream('click', '.box')
-  .map(function(e) {
-    return $(e.currentTarget)
-  })
-  .onValue(function($box) {
-    $box.toggleClass('expanded')
-    calculateBoxHeights()
-  })
-
-calculateBoxHeights()
-
 function calculateBoxHeights() {
   var collapsedBoxes = $('#sidebar').find('.box:not(.expanded)')
   var expandedBoxes = $('#sidebar').find('.box.expanded')
@@ -52,10 +40,9 @@ function calculateBoxHeights() {
             return total + height
           }, 0)
 
-      var collapsedTotalHeight = (collapsedBoxes.length * collapsedBoxHeight / expandedBoxesWithoutMaxHeight.length) + (sidebarPadding * 2)
-      var subtract = collapsedTotalHeight + expandedTotalAbsoluteHeight
+      var collapsedTotalHeight = collapsedBoxes.length * collapsedBoxHeight / expandedBoxesWithoutMaxHeight.length
+      var subtract = collapsedTotalHeight + expandedTotalAbsoluteHeight / expandedBoxesWithoutMaxHeight.length
       var expression = 'calc(' + percent + '% - ' + subtract + 'px)'
-      console.log('expression', expression)
       $(this).css('height', expression)
     })
 }
@@ -136,3 +123,22 @@ function applySidebarPosition(x) {
       .css('max-height', '1000px')
   }
 }
+
+function main() {
+  $('#sidebar')
+    .asEventStream('click', '.box')
+    .map(function(e) {
+      return $(e.currentTarget)
+    })
+    .onValue(function($box) {
+      $box.toggleClass('expanded')
+      calculateBoxHeights()
+    })
+
+  setTimeout(function() {
+    calculateBoxHeights()
+  }, 50)
+
+}
+
+main()

@@ -7,7 +7,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #e6e6e6;
+  background-color: #E6E6E6;
   font-size: 22px;
   text-align: center;
 }
@@ -55,9 +55,16 @@ body {
 }
 
 #sidebar .box {
-  margin: 5px;
   min-height: 60px;
   cursor: pointer;
+}
+
+#sidebar .box:nth-child(1n+2) {
+  border-top: 2px solid #E6E6E6;
+}
+
+#sidebar .box .content {
+  padding: 5px;
 }
 
 #sidebar .box .collapsed {
