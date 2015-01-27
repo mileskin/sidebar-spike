@@ -5,6 +5,17 @@ window.sidebar = (function($) {
   var sidebarMinHeight = 500
   var sidebarPadding = 10
 
+  function init() {
+    Bacon.mergeAll([
+      $win.asEventStream('load'),
+      $win.asEventStream('scroll'),
+      $win.asEventStream('resize')
+    ])
+      .debounce(100)
+      .map(toCurrentElementPositions)
+      .onValue(applySidebarPosition)
+  }
+
   function toCurrentElementPositions() {
     var windowHeight = $win.height()
     var windowTop = $win.scrollTop()
@@ -68,17 +79,6 @@ window.sidebar = (function($) {
         .css('bottom', sidebarPadding)
         .css('max-height', '1000px')
     }
-  }
-
-  function init() {
-    Bacon.mergeAll([
-      $win.asEventStream('load'),
-      $win.asEventStream('scroll'),
-      $win.asEventStream('resize')
-    ])
-      .debounce(100)
-      .map(toCurrentElementPositions)
-      .onValue(applySidebarPosition)
   }
 
   return {
