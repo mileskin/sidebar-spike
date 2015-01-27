@@ -13,6 +13,7 @@ $('#sidebar')
     calculateBoxHeights()
   })
 
+calculateBoxHeights()
 
 function calculateBoxHeights() {
   var collapsedBoxes = $('#sidebar').find('.box:not(.expanded)')
