@@ -1,22 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #e6e6e6;
+  background-color: #E6E6E6;
   font-size: 22px;
   text-align: center;
 }
 
-#topbar-1 {
+.topbar {
   width: 100%;
   height: 40px;
+}
+
+#topbar-1 {
   background-color: magenta;
 }
 
 #topbar-2 {
-  width: 100%;
-  height: 40px;
   background-color: lime;
 }
 
@@ -29,14 +34,14 @@ body {
   clear: both;
 }
 
-#page-content #main-content {
+#main-content {
   width: 55%;
   height: 1200px;
   float: left;
   background-color: #FFCC99;
 }
 
-#page-content #sidebar {
+#sidebar {
   min-height: 500px;
   right: 0;
   width: 45%;
@@ -49,10 +54,46 @@ body {
   background-color: #993300;
 }
 
-#page-content #sidebar .box {
-  height: 31%;
-  margin: 5px;
-  border: 3px dotted gray;
+#sidebar .box {
+  min-height: 60px;
+  cursor: pointer;
+}
+
+#sidebar .box:nth-child(1n+2) {
+  border-top: 2px solid #E6E6E6;
+}
+
+#sidebar .box .content {
+  padding: 5px;
+}
+
+#sidebar .box .collapsed {
+  height: 60px;
+  background-color: pink;
+}
+
+#sidebar .box .expanded {
+  display: none;
+  height: 100%;
+  background-color: lightgreen;
+}
+
+#sidebar .box.expanded {
+  .collapsed {
+    display: none;
+  }
+
+  .expanded {
+    display: block;
+  }
+}
+
+#sidebar #box-1 {
+  max-height: 150px;
+}
+
+#sidebar #box-2 {
+  max-height: 200px;
 }
 
 #footer {

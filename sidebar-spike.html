@@ -2,18 +2,31 @@
 <html>
 <head>
 <title>Sidebar Spike</title>
-<link rel="stylesheet" type="text/css" href="spike.css"></link>
+<link rel="stylesheet/less" type="text/css" href="spike.less"></link>
 </head>
 <body>
-<div id="topbar-1">top bar 1</div>
-<div id="topbar-2">top bar 2</div>
+<div id="topbar-1" class="topbar">top bar 1</div>
+<div id="topbar-2" class="topbar">top bar 2</div>
 <div id="page-content">
   <div id="main-content-and-sidebar">
     <div id="main-content">main content</div>
     <div id="sidebar">
-      <div class="box">box 1</div>
-      <div class="box">box 2</div>
-      <div class="box">box 3</div>
+      <div id="box-1" class="box">
+        <div class="collapsed content">collapsed box 1</div>
+        <div class="expanded content">expanded box 1</div>
+      </div>
+      <div id="box-2" class="box">
+        <div class="collapsed content">collapsed box 2</div>
+        <div class="expanded content">expanded box 2</div>
+      </div>
+      <div id="box-3" class="box expanded">
+        <div class="collapsed content">collapsed box 3</div>
+        <div class="expanded content">expanded box 3</div>
+      </div>
+      <div id="box-4" class="box expanded">
+        <div class="collapsed content">collapsed box 4</div>
+        <div class="expanded content">expanded box 4</div>
+      </div>
     </div>
     <div class="clear"></div>
   </div>
@@ -22,6 +35,9 @@
 <div id="footer">footer</div>
 <script type="text/javascript" src="vendor/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="vendor/bacon.js"></script>
+<script type="text/javascript" src="vendor/less.min.js"></script>
+<script type="text/javascript" src="sidebar.js"></script>
+<script type="text/javascript" src="boxes.js"></script>
 <script type="text/javascript" src="spike.js"></script>
 </body>
 </html>
