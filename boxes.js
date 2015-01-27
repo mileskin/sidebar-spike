@@ -1,5 +1,5 @@
 ;
-window.boxes = (function($) {
+window.Spike.Boxes = (function($) {
 
   function init() {
     $('#sidebar')

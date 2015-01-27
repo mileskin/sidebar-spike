@@ -1,5 +1,5 @@
 ;
-window.sidebar = (function($) {
+window.Spike.Sidebar = (function($) {
 
   var $win = $(window)
   var sidebarMinHeight = 500
