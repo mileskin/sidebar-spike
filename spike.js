@@ -2,6 +2,15 @@ var $win = $(window)
 var sidebarMinHeight = 500
 var sidebarPadding = 10
 
+$('#sidebar')
+  .asEventStream('click', '.box')
+  .map(function(e) {
+    return $(e.currentTarget)
+  })
+  .onValue(function($box) {
+    $box.toggleClass('expanded')
+  })
+
 Bacon.mergeAll([
   $win.asEventStream('load'),
   $win.asEventStream('scroll'),
