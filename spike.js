@@ -1,6 +1,7 @@
 var $win = $(window)
 var sidebarMinHeight = 500
 var sidebarPadding = 10
+var collapsedBoxHeight = 60
 
 $('#sidebar')
   .asEventStream('click', '.box')
@@ -9,7 +10,55 @@ $('#sidebar')
   })
   .onValue(function($box) {
     $box.toggleClass('expanded')
+    calculateBoxHeights()
   })
+
+
+function calculateBoxHeights() {
+  var collapsedBoxes = $('#sidebar').find('.box:not(.expanded)')
+  var expandedBoxes = $('#sidebar').find('.box.expanded')
+  collapsedBoxes.each(function() {
+    $(this).css('height', collapsedBoxHeight + 'px')
+  })
+
+  expandedBoxesWithMaxHeight =
+    expandedBoxes
+      .filter(function() {
+        return $(this).css('max-height') != 'none'
+      })
+
+  expandedBoxesWithoutMaxHeight =
+    expandedBoxes
+      .filter(function() {
+        return $(this).css('max-height') == 'none'
+      })
+
+  expandedBoxesWithMaxHeight
+    .each(function() {
+      $(this).css('height', $(this).css('max-height'))
+    })
+
+  expandedBoxesWithoutMaxHeight
+    .each(function() {
+      var percent = 100 / expandedBoxesWithoutMaxHeight.length
+      var expandedTotalAbsoluteHeight =
+        expandedBoxesWithMaxHeight
+          .map(function() {
+            return parseInt($(this).css('height'), 10)
+          })
+          .toArray()
+          .reduce(function(total, height) {
+            return total + height
+          }, 0)
+
+      var collapsedTotalHeight = (collapsedBoxes.length * collapsedBoxHeight / expandedBoxesWithoutMaxHeight.length) + (sidebarPadding * 2)
+      var subtract = collapsedTotalHeight + expandedTotalAbsoluteHeight
+      var expression = 'calc(' + percent + '% - ' + subtract + 'px)'
+      console.log('expression', expression)
+      $(this).css('height', expression)
+    })
+}
+
 
 Bacon.mergeAll([
   $win.asEventStream('load'),
@@ -46,7 +95,7 @@ function toCurrentElementPositions() {
 
 
 function applySidebarPosition(x) {
-  console.table([x])
+  // console.table([x])
   if (x.windowHeight < x.sidebarMinHeight + x.topbar) {
     console.log('small window')
     $('#sidebar')

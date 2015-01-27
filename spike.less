@@ -56,7 +56,9 @@ body {
 
 #sidebar .box {
   margin: 5px;
+  min-height: 60px;
   border: 3px dotted gray;
+  cursor: pointer;
 }
 
 #sidebar .box .collapsed {
@@ -66,7 +68,7 @@ body {
 
 #sidebar .box .expanded {
   display: none;
-  height: 200px;
+  height: 100%;
   background-color: lightgreen;
 }
 
@@ -78,6 +80,15 @@ body {
   .expanded {
     display: block;
   }
+}
+
+#sidebar #box-1 {
+  max-height: 150px;
+}
+
+
+#sidebar #box-2 {
+  max-height: 200px;
 }
 
 #footer {
