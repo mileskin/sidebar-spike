@@ -78,14 +78,12 @@ body {
   background-color: lightgreen;
 }
 
-#sidebar .box.expanded {
-  .collapsed {
-    display: none;
-  }
+#sidebar .box.expanded .collapsed {
+  display: none;
+}
 
-  .expanded {
-    display: block;
-  }
+#sidebar .box.expanded .expanded {
+  display: block;
 }
 
 #sidebar #box-1 {
