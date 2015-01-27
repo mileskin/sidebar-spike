@@ -1,0 +1,39 @@
+#sidebar .box {
+  min-height: 60px;
+  cursor: pointer;
+}
+
+#sidebar .box:nth-child(1n+2) {
+  border-top: 2px solid #E6E6E6;
+}
+
+#sidebar .box .content {
+  padding: 5px;
+}
+
+#sidebar .box .collapsed {
+  height: 60px;
+  background-color: pink;
+}
+
+#sidebar .box .expanded {
+  display: none;
+  height: 100%;
+  background-color: lightgreen;
+}
+
+#sidebar .box.expanded > .collapsed {
+  display: none;
+}
+
+#sidebar .box.expanded > .expanded {
+  display: block;
+}
+
+#sidebar #box-1 {
+  max-height: 150px;
+}
+
+#sidebar #box-2 {
+  max-height: 200px;
+}
