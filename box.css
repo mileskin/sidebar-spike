@@ -38,4 +38,8 @@
   #sidebar #box-4 {
     max-height: 600px;
   }
+
+  #sidebar .box:not(.selected) {
+    display: none;
+  }
 }
