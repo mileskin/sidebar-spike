@@ -16,6 +16,7 @@ window.Spike.Boxes = (function($) {
   function calculateBoxHeights() {
     console.log('### calculateBoxHeights')
     var collapsedBoxHeight = 60
+    var expandedBoxFallbackHeight = 400
     var collapsedBoxes = $('#sidebar').find('.box:not(.expanded)')
     var expandedBoxes = $('#sidebar').find('.box.expanded')
 
@@ -43,10 +44,14 @@ window.Spike.Boxes = (function($) {
 
     expandedBoxesWithoutMaxHeight
       .each(function() {
+        var $box = $(this)
         var newBoxHeight = (function() {
           if ($(window).width() < 769) {
-            // TODO: use mobile max-height if available
-            return '300px'
+            if ($box.css('max-height') == 'none') {
+              return expandedBoxFallbackHeight
+            } else {
+              return $box.css('max-height')
+            }
           } else {
             var relativeSpaceForBox = 100 / expandedBoxesWithoutMaxHeight.length
             var expandedTotalAbsoluteHeight =
@@ -64,7 +69,7 @@ window.Spike.Boxes = (function($) {
           }
         })()
         console.log('new box height', newBoxHeight)
-        $(this).css('height', newBoxHeight)
+        $box.css('height', newBoxHeight)
       })
   }
 

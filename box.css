@@ -37,3 +37,9 @@
 #sidebar #box-2 {
   max-height: 200px;
 }
+
+@media screen and (max-width: 768px) {
+  #sidebar #box-4 {
+    max-height: 600px;
+  }
+}
