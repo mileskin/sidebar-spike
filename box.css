@@ -7,10 +7,6 @@
   border-top: 2px solid #E6E6E6;
 }
 
-#sidebar .box .content {
-  padding: 5px;
-}
-
 #sidebar .box .collapsed {
   height: 60px;
   background-color: pink;
@@ -36,4 +32,14 @@
 
 #sidebar #box-2 {
   max-height: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar #box-4 {
+    max-height: 600px;
+  }
+
+  #sidebar .box:not(.selected) {
+    display: none;
+  }
 }

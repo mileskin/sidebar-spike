@@ -5,13 +5,22 @@
 <link rel="stylesheet" type="text/css" href="spike.css"></link>
 <link rel="stylesheet" type="text/css" href="sidebar.css"></link>
 <link rel="stylesheet" type="text/css" href="box.css"></link>
+<link rel="stylesheet" type="text/css" href="tabs.css"></link>
 </head>
 <body>
-<div id="topbar-1" class="topbar">top bar 1</div>
-<div id="topbar-2" class="topbar">top bar 2</div>
+<div id="topbar-1" class="topbar content">top bar 1</div>
+<div id="topbar-2" class="topbar content">top bar 2</div>
 <div id="page-content">
   <div id="main-content-and-sidebar">
-    <div id="main-content">main content</div>
+    <div>
+      <ul id="tabs">
+        <li id="tab-1"><a href="#box-1">Box 1</a></li>
+        <li id="tab-2"><a href="#box-2">Box 2</a></li>
+        <li id="tab-3"><a href="#box-3">Box 3</a></li>
+        <li id="tab-4"><a href="#box-4">Box 4</a></li>
+      </ul>
+      <div class="clear"></div>
+    </div>
     <div id="sidebar">
       <div id="box-1" class="box">
         <div class="collapsed content">collapsed box 1</div>
@@ -30,16 +39,18 @@
         <div class="expanded content">expanded box 4</div>
       </div>
     </div>
+    <div id="main-content" class="content">main content</div>
     <div class="clear"></div>
   </div>
-  <div id="bottom-content">bottom page wide content</div>
+  <div id="bottom-content" class="content">bottom page wide content</div>
 </div>
-<div id="footer">footer</div>
+<div id="footer" class="content">footer</div>
 <script type="text/javascript" src="vendor/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="vendor/bacon.js"></script>
 <script type="text/javascript" src="spike.js"></script>
 <script type="text/javascript" src="sidebar.js"></script>
 <script type="text/javascript" src="boxes.js"></script>
+<script type="text/javascript" src="tabs.js"></script>
 <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

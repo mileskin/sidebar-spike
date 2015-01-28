@@ -1,7 +1,17 @@
 #sidebar {
-  min-height: 500px;
-  right: 0;
-  width: 45%;
-  float: left;
   background-color: #0099FF;
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #sidebar {
+    float: left;
+    right: 0;
+    width: 45%;
+  }
 }
