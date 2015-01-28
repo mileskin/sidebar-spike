@@ -7,7 +7,7 @@ window.Spike.Tabs = (function($) {
       .doAction('.preventDefault')
       .onValue(function(event) {
         var $tab = $(event.currentTarget)
-        var targetBoxId = $tab.find('a').attr('href').substring(1)
+        var targetBoxId = $tab.find('a').attr('data-target')
 
         $('#tabs').find('li').each(function() {
           var $li = $(this)
