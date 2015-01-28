@@ -1,5 +1,6 @@
 ;
 (function(spike) {
-  spike.Sidebar.init()
-  spike.Boxes.init()
+  var boxes = spike.Boxes
+  spike.Sidebar.init(boxes.calculateBoxHeights)
+  boxes.init()
 })(window.Spike)

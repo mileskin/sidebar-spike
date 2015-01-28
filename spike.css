@@ -36,9 +36,15 @@ body {
 
 #main-content {
   width: 55%;
-  height: 1200px;
+  height: 1800px;
   float: left;
   background-color: #FFCC99;
+}
+
+@media screen and (max-width: 768px) {
+  #main-content {
+    width: 100%;
+  }
 }
 
 #page-content #bottom-content {

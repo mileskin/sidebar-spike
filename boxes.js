@@ -11,13 +11,10 @@ window.Spike.Boxes = (function($) {
         $box.toggleClass('expanded')
         calculateBoxHeights()
       })
-
-    setTimeout(function() {
-      calculateBoxHeights()
-    }, 50)
   }
 
   function calculateBoxHeights() {
+    console.log('### calculateBoxHeights')
     var collapsedBoxHeight = 60
     var collapsedBoxes = $('#sidebar').find('.box:not(.expanded)')
     var expandedBoxes = $('#sidebar').find('.box.expanded')
@@ -46,26 +43,34 @@ window.Spike.Boxes = (function($) {
 
     expandedBoxesWithoutMaxHeight
       .each(function() {
-        var relativeSpaceForBox = 100 / expandedBoxesWithoutMaxHeight.length
-        var expandedTotalAbsoluteHeight =
-          expandedBoxesWithMaxHeight
-            .map(function() {
-              return parseInt($(this).css('height'), 10)
-            })
-            .toArray()
-            .reduce(function(total, height) {
-              return total + height
-            }, 0)
-        var collapsedTotalHeight = collapsedBoxes.length * collapsedBoxHeight / expandedBoxesWithoutMaxHeight.length
-        var absoluteSpaceUsed = collapsedTotalHeight + expandedTotalAbsoluteHeight / expandedBoxesWithoutMaxHeight.length
-        var newBoxHeight = 'calc(' + relativeSpaceForBox + '% - ' + absoluteSpaceUsed + 'px)'
+        var newBoxHeight = (function() {
+          if ($(window).width() < 769) {
+            // TODO: use mobile max-height if available
+            return '300px'
+          } else {
+            var relativeSpaceForBox = 100 / expandedBoxesWithoutMaxHeight.length
+            var expandedTotalAbsoluteHeight =
+              expandedBoxesWithMaxHeight
+                .map(function() {
+                  return parseInt($(this).css('height'), 10)
+                })
+                .toArray()
+                .reduce(function(total, height) {
+                  return total + height
+                }, 0)
+            var collapsedTotalHeight = collapsedBoxes.length * collapsedBoxHeight / expandedBoxesWithoutMaxHeight.length
+            var absoluteSpaceUsed = collapsedTotalHeight + expandedTotalAbsoluteHeight / expandedBoxesWithoutMaxHeight.length
+            return 'calc(' + relativeSpaceForBox + '% - ' + absoluteSpaceUsed + 'px)'
+          }
+        })()
         console.log('new box height', newBoxHeight)
         $(this).css('height', newBoxHeight)
       })
   }
 
   return {
-    init: init
+    init: init,
+    calculateBoxHeights: calculateBoxHeights
   }
 
 })(jQuery)
