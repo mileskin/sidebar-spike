@@ -18,6 +18,7 @@ ul#tabs li {
   padding: 3px;
   float: left;
   border: 1px solid brown;
+  cursor: pointer;
 }
 
 ul#tabs li.selected {
