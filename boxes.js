@@ -4,6 +4,7 @@ window.Spike.Boxes = (function($) {
   function init() {
     $('#sidebar')
       .asEventStream('click', '.box')
+      .debounceImmediate(500)
       .map(function(e) {
         return $(e.currentTarget)
       })

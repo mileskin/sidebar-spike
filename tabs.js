@@ -4,6 +4,7 @@ window.Spike.Tabs = (function($) {
   function init() {
     $('#tabs')
       .asEventStream('click', 'li')
+      .debounceImmediate(500)
       .doAction('.preventDefault')
       .onValue(function(event) {
         var $tab = $(event.currentTarget)
